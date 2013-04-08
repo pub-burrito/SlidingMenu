@@ -1,14 +1,14 @@
 package com.slidingmenu.lib.app;
 
-import com.slidingmenu.lib.SlidingMenu;
-
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-public class SlidingPreferenceActivity extends PreferenceActivity implements SlidingActivityBase {
+import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockPreferenceActivity;
+import com.slidingmenu.lib.SlidingMenu;
+
+public class SlidingPreferenceActivity extends RoboSherlockPreferenceActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 

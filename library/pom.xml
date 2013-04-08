@@ -18,11 +18,41 @@
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
+			<version>4.1.1.4</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>support-v4</artifactId>
 		</dependency>
+		
+		<!-- 
+		Flagging the following 3 as dependencies for Cloud use only - 
+		we need RoboGuice + ActionBarSherlock in addition to SlidingMenu and 
+		they all use activity inheritance to enable their features :\ 
+		-->
+		<dependency>
+			<groupId>com.actionbarsherlock</groupId>
+			<artifactId>actionbarsherlock</artifactId>
+			<version>4.2.0</version>
+			<type>apklib</type>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.actionbarsherlock</groupId>
+			<artifactId>actionbarsherlock</artifactId>
+			<version>4.2.0</version>
+			<type>jar</type>
+		</dependency>
+		
+		<dependency>
+	        <groupId>com.github.rtyley</groupId>
+	        <artifactId>roboguice-sherlock</artifactId>
+	        <version>1.5</version>
+	        <!-- 
+		    <type>jar</type>
+	         -->
+	    </dependency>
 	</dependencies>
 
 	<build>

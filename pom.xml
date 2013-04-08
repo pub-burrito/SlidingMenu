@@ -25,6 +25,7 @@
 				<groupId>com.google.android</groupId>
 				<artifactId>android</artifactId>
 				<version>4.1.1.4</version>
+				<type>provided</type>
 			</dependency>
 			<dependency>
 				<groupId>com.google.android.maps</groupId>
@@ -38,6 +39,17 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
+	<distributionManagement>
+		<repository>
+		   <id>cloud.archiva.internal</id>
+		   <url>http://cloud.local:8180/archiva/repository/internal/</url>
+		</repository>
+		<snapshotRepository>
+		   <id>cloud.archiva.snapshots</id>
+		   <url>http://cloud.local:8180/archiva/repository/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<pluginManagement>

@@ -609,7 +609,7 @@ public class CustomViewAbove extends ViewGroup {
 			allowed = mViewBehind.menuClosedSlideAllowed(dx, dy);
 		}
 		if (DEBUG)
-			Log.v(TAG, "this slide allowed " + allowed + " dx: " + dx);
+			Log.v(TAG, "this slide allowed " + allowed + " dx: " + dx + " dy: " + dy);
 		return allowed;
 	}
 
@@ -815,6 +815,7 @@ public class CustomViewAbove extends ViewGroup {
 		final int activePointerId = mActivePointerId;
 		if (activePointerId == INVALID_POINTER)
 			return;
+		
 		final int pointerIndex = this.getPointerIndex(ev, activePointerId);
 		final float x = MotionEventCompat.getX(ev, pointerIndex);
 		final float dx = x - mLastMotionX;
@@ -822,10 +823,17 @@ public class CustomViewAbove extends ViewGroup {
 		final float y = MotionEventCompat.getY(ev, pointerIndex);
 		final float dy = y - mLastMotionY;
 		final float yDiff = Math.abs(dy);
+		
 		if (DEBUG) Log.v(TAG, "onInterceptTouch moved to:(" + x + ", " + y + "), diff:(" + xDiff + ", " + yDiff + "), touch slop:" + mTouchSlop);
+		
 		boolean lookAtHoz = !isMenuOpen() && mTouchMode == SlidingMenu.TOUCHMODE_MARGIN;
 		boolean touchHoz = mViewBehind.menuClosedTouchHoz(mContent, (int) (mScrollX + x), (int) (mScrollY + y));
-		if (xDiff > mTouchSlop && xDiff > yDiff && thisSlideAllowed(dx, dy)) {
+		
+		int touchSlop = isMenuOpen()? mTouchSlop/3 : mTouchSlop;
+		
+		if (xDiff > touchSlop && xDiff > yDiff && thisSlideAllowed(dx, dy)) {
+			if (DEBUG) Log.v(TAG, "Dragging horizontally. LookAtHoz: " + lookAtHoz + " touchHoz: " + touchHoz);
+			
 			if (lookAtHoz && !touchHoz) {
 				mIsUnableToDrag = true;
 				return;
@@ -836,7 +844,10 @@ public class CustomViewAbove extends ViewGroup {
 			mLastMotionY = y;
 			setScrollingCacheEnabled(true);
 			// TODO add back in touch slop check
-		} else if (yDiff > xDiff && thisSlideAllowed(dx, dy)) {
+			
+		} else if (yDiff > touchSlop && yDiff > xDiff && thisSlideAllowed(dx, dy)) {
+			if (DEBUG) Log.v(TAG, "Dragging vertically. LookAtHoz: " + lookAtHoz + " touchHoz: " + touchHoz);
+			
 			if (lookAtHoz && touchHoz) {
 				mIsUnableToDrag = true;
 				return;
@@ -846,7 +857,9 @@ public class CustomViewAbove extends ViewGroup {
 			mLastMotionX = x;
 			mLastMotionY = y;
 			setScrollingCacheEnabled(true);
+			
 		} else if (xDiff > mTouchSlop || yDiff > mTouchSlop) {
+			if (DEBUG) Log.v(TAG, "Not Dragging. LookAtHoz: " + lookAtHoz + " touchHoz: " + touchHoz);
 			mIsUnableToDrag = true;
 		}
 	}

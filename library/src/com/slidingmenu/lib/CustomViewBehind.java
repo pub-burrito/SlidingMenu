@@ -2,6 +2,8 @@ package com.slidingmenu.lib;
 
 import java.util.ArrayList;
 
+import roboguice.util.Ln;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -416,18 +418,23 @@ public class CustomViewBehind extends ViewGroup {
 
 	public boolean menuOpenSlideAllowed(float dx, float dy, int page) {
 		boolean allowed = false;
+		boolean isVerticalMovement = Math.abs(dx) > Math.abs(dy);
+		
 		if (SlidingMode.isLeft(mMode) && page == 0) {
-			allowed |= dx < 0;
+			allowed |= dx < 0 && isVerticalMovement;
 		}
 		if (SlidingMode.isRight(mMode) && page == 2) {
-			allowed |= dx > 0;
+			allowed |= dx > 0 && isVerticalMovement;
 		}
 		if (SlidingMode.isTop(mMode) && page == 3) {
-			allowed |= dy < 0;
+			allowed |= dy < 0 && !isVerticalMovement;
 		}	
 		if (SlidingMode.isBottom(mMode) && page == 4) {
-			allowed |= dy > 0;
+			allowed |= dy > 0 && !isVerticalMovement;
 		}
+		
+		//Ln.d("slide allowed: %s, mode: %s, dx: %s, dy: %s", allowed, mMode, dx, dy);
+		
 		return allowed;
 	}
 
@@ -445,6 +452,9 @@ public class CustomViewBehind extends ViewGroup {
 		if (SlidingMode.isBottom(mMode)) {
 			allowed |= dy < 0;
 		}
+		
+		//Ln.d("slide allowed: %s, mode: %s, dx: %s, dy: %s", allowed, mMode, dx, dy);
+		
 		return allowed;
 	}
 

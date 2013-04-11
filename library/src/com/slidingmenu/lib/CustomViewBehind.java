@@ -40,6 +40,8 @@ public class CustomViewBehind extends ViewGroup {
 		public int shadowWidth = 0;
 		public int offset = 0;
 		public float scrollScale = 0.0f;
+		public boolean slidingEnabled = true;
+		
 		public Side(int side) {
 			this.side = side;
 		}
@@ -295,6 +297,11 @@ public class CustomViewBehind extends ViewGroup {
 		}
 
 	}
+	
+	public void setSlidingEnabled(boolean enabled, int side) {
+		Side s = getSide(side);
+		s.slidingEnabled = enabled;
+	}
 
 	public int getMenuLeft(View content, int page) {
 		if (SlidingMode.isLeft(mMode) && SlidingMode.isRight(mMode)) {
@@ -441,16 +448,20 @@ public class CustomViewBehind extends ViewGroup {
 	public boolean menuClosedSlideAllowed(float dx, float dy) {
 		boolean allowed = false;
 		if (SlidingMode.isLeft(mMode)) {
-			allowed |= dx > 0;
+			Side s = getSide(LEFT);
+			allowed |= dx > 0 && s.slidingEnabled;
 		}
 		if (SlidingMode.isRight(mMode)) {
-			allowed |= dx < 0;
+			Side s = getSide(RIGHT);
+			allowed |= dx < 0 && s.slidingEnabled;
 		}
 		if (SlidingMode.isTop(mMode)) {
-			allowed |= dy > 0;
+			Side s = getSide(TOP);
+			allowed |= dy > 0 && s.slidingEnabled;
 		}	
 		if (SlidingMode.isBottom(mMode)) {
-			allowed |= dy < 0;
+			Side s = getSide(BOTTOM);
+			allowed |= dy < 0 && s.slidingEnabled;
 		}
 		
 		//Ln.d("slide allowed: %s, mode: %s, dx: %s, dy: %s", allowed, mMode, dx, dy);

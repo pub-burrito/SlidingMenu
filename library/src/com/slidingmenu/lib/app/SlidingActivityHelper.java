@@ -36,6 +36,11 @@ public class SlidingActivityHelper {
 	public SlidingActivityHelper(Activity activity) {
 		mActivity = activity;
 	}
+	
+	public SlidingActivityHelper(Activity activity, SlidingMenu menu) {
+		mActivity = activity;
+		mSlidingMenu = menu;
+	}
 
 	/**
 	 * Sets mSlidingMenu as a newly inflated SlidingMenu. Should be called within the activitiy's onCreate()
@@ -212,6 +217,10 @@ public class SlidingActivityHelper {
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isMenuShowing()) {
 			showContent();
+			return true;
+		}
+		if (keyCode == KeyEvent.KEYCODE_BACK && mSlidingMenu.isSecondaryMenuShowing()) {
+			showSecondaryMenu();
 			return true;
 		}
 		return false;

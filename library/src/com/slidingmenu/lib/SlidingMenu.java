@@ -989,5 +989,9 @@ public class SlidingMenu extends RelativeLayout {
 			});
 		}
 	}
+	
+	public void setSlidingEnabled(boolean enabled, int side) {
+		mViewBehind.setSlidingEnabled(enabled, side);
+	}
 
 }

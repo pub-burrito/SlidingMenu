@@ -391,7 +391,7 @@ public class CustomViewAbove extends ViewGroup {
 	 * @param y the number of pixels to scroll by on the Y axis
 	 * @param velocity the velocity associated with a fling, if applicable. (0 otherwise)
 	 */
-	void smoothScrollTo(int x, int y, int velocity) {
+	public void smoothScrollTo(int x, int y, int velocity) {
 		if (getChildCount() == 0) {
 			// Nothing to do.
 			setScrollingCacheEnabled(false);

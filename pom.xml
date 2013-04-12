@@ -35,7 +35,7 @@
 			<dependency>
 				<groupId>com.google.android</groupId>
 				<artifactId>support-v4</artifactId>
-				<version>r7</version>
+				<version>r11</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -51,6 +51,13 @@
 		</snapshotRepository>
 	</distributionManagement>
 
+	<repositories>
+	    <repository>
+	        <id>ldsmobile</id>
+	        <url>http://www.ldsmobile.org/nexus/content/repositories/public/</url>
+	    </repository>
+	</repositories>
+	
 	<build>
 		<pluginManagement>
 			<plugins>

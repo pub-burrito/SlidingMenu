@@ -831,7 +831,7 @@ public class CustomViewAbove extends ViewGroup {
 		
 		int touchSlop = isMenuOpen()? mTouchSlop/3 : mTouchSlop;
 		
-		if (xDiff > touchSlop && xDiff > yDiff && thisSlideAllowed(dx, dy)) {
+		if (xDiff > touchSlop && xDiff > yDiff && thisSlideAllowed(dx, 0)) {
 			if (DEBUG) Log.v(TAG, "Dragging horizontally. LookAtHoz: " + lookAtHoz + " touchHoz: " + touchHoz);
 			
 			if (lookAtHoz && !touchHoz) {
@@ -845,7 +845,7 @@ public class CustomViewAbove extends ViewGroup {
 			setScrollingCacheEnabled(true);
 			// TODO add back in touch slop check
 			
-		} else if (yDiff > touchSlop && yDiff > xDiff && thisSlideAllowed(dx, dy)) {
+		} else if (yDiff > touchSlop && yDiff > xDiff && thisSlideAllowed(0, dy)) {
 			if (DEBUG) Log.v(TAG, "Dragging vertically. LookAtHoz: " + lookAtHoz + " touchHoz: " + touchHoz);
 			
 			if (lookAtHoz && touchHoz) {

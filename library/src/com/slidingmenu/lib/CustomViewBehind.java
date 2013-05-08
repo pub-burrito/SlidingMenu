@@ -448,6 +448,7 @@ public class CustomViewBehind extends ViewGroup {
 	public boolean menuClosedSlideAllowed(float dx, float dy) {
 		boolean allowed = false;
 		if (SlidingMode.isLeft(mMode)) {
+			
 			Side s = getSide(LEFT);
 			allowed |= dx > 0 && s.slidingEnabled;
 		}
@@ -464,7 +465,7 @@ public class CustomViewBehind extends ViewGroup {
 			allowed |= dy < 0 && s.slidingEnabled;
 		}
 		
-		//Ln.d("slide allowed: %s, mode: %s, dx: %s, dy: %s", allowed, mMode, dx, dy);
+		Ln.d("slide allowed: %s, mode: %s, dx: %s, dy: %s", allowed, mMode, dx, dy);
 		
 		return allowed;
 	}

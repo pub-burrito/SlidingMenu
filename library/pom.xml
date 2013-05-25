@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>4.1.1.4</version>
+			<version>4.1.1.4</version><!--$NO-MVN-MAN-VER$-->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -68,6 +68,17 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+		          <verbose>true</verbose>
+		          <source>1.6</source>
+		          <target>1.6</target>
+		          <encoding>UTF-8</encoding>
+		        </configuration>
+			</plugin>
+			
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>

@@ -58,13 +58,21 @@
 	    </repository>
 	</repositories>
 	
+	<pluginRepositories>
+	  <pluginRepository>
+          <id>oss.sonatype.org-jayway-releases</id>
+          <name>Jayway OpenSource RELEASEs on Sonatype.org</name>
+          <url>http://oss.sonatype.org/content/repositories/jayway-releases/</url>
+      </pluginRepository>
+	</pluginRepositories>
+	
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 					<artifactId>android-maven-plugin</artifactId>
-					<version>3.5.0</version>
+					<version>3.6.0</version>
 
 					<configuration>
 						<sdk>

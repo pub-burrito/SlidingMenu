@@ -1028,7 +1028,8 @@ public class CustomViewAbove extends ViewGroup {
 	 */
 	public boolean executeKeyEvent(KeyEvent event) {
 		boolean handled = false;
-		if (event.getAction() == KeyEvent.ACTION_DOWN) {
+		
+		if (mEnabled && event.getAction() == KeyEvent.ACTION_DOWN) {
 			switch (event.getKeyCode()) {
 			case KeyEvent.KEYCODE_DPAD_LEFT:
 				handled = arrowScroll(FOCUS_LEFT);
